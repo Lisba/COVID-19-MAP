@@ -1,138 +1,173 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
+	* {
+	    padding: 0;
+	    margin: 0;
+	    box-sizing: border-box;
+	}
 
-body {
-    padding: 1%;
-    display: flex;
-    justify-content: space-around;
-    background-color: #F2F1EF;
-}
+	body {
+	    padding: 1%;
+	    display: flex;
+	    justify-content: space-around;
+	    background-color: #F2F1EF;
+	}
 
-.map {
-    height: 100vh;
-    width: 80%;
-}
+	.map {
+	    height: 100vh;
+	    width: 80%;
+	}
 
-.totalInfo {
-    width: 17%;
-    height: 100vh;
-    background-color: #F2F1EF;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
-}
+	.totalInfo {
+	    width: 17%;
+	    height: 100vh;
+	    background-color: #F2F1EF;
+	    display: flex;
+	    flex-wrap: wrap;
+	    align-items: center;
+	    font-family: Arial, Helvetica, sans-serif;
+	}
 
-#confirmedCases {
-    padding: 5%;
-    background-color: #36626F;
-    width: 100%;
-    height: 31vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+	#confirmedCases {
+	    padding: 5%;
+	    background-color: #FBD02D;
+	    width: 100%;
+	    height: 31vh;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    justify-content: center;
+	    color: #333652;
+	}
 
-#deathCases {
-    padding: 5%;
-    background-color: #36626F;
-    width: 100%;
-    height: 31vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+	#confirmedCasesP {
+		color: #7081BF;
+	}
 
-#recoveredCases {
-    padding: 5%;
-    background-color: #36626F;
-    width: 100%;
-    height: 31vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+	#deathCases {
+	    padding: 5%;
+	    background-color: #333652;
+	    width: 100%;
+	    height: 31vh;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    justify-content: center;
+	}
 
-body div div h1 {
-    font-weight: bold;
-    color: #F8C24B;
-}
+	#recoveredCases {
+	    padding: 5%;
+	    background-color: #9796B1;
+	    width: 100%;
+	    height: 31vh;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    justify-content: center;
+	    color: #333652;
+	}
 
-body div div h2 {
-     color: white;
-}
+	body div div h1 {
+	    font-weight: bold;
+	    color: #F8C24B;
+	}
 
-@media screen and (max-width: 768px)
-{
-    body {
-        padding: 2%;
-        display: flex;
-        flex-direction: column;
-        background-color: rgb(27, 27, 27);
-    }
+	body div div {
+	     color: white;
+	}
 
-    .map {
-        height: 85vh;
-        width: 100%;
-    }
+	p {
+		color: #333652;
+		font-family: 'Helvetica', 'Arial', 'sans-serif'; 
+	}
 
-    .totalInfo {
-        font-family: Arial, Helvetica, sans-serif;
-        width: 100%;
-        height: 13vh;
-        background-color: rgb(27, 27, 27);
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
+	.gm-style .gm-style-iw-c
+	{
+		background-color: #FBD02D;
+		opacity: 0.9;
 
-    #confirmedCases {
-        padding: 1%;
-        background-image: linear-gradient(-45deg, rgb(49, 49, 49), rgb(102, 102, 102), rgb(49, 49, 49));
-        width: 30%;
-        height: 10vh;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-    }
- 
-    #deathCases {
-        padding: 1%;
-        background-image: linear-gradient(-45deg, rgb(49, 49, 49), rgb(102, 102, 102), rgb(49, 49, 49));
-        width: 30%;
-        height: 10vh;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-    }
+	}
 
-    #recoveredCases {
-        padding: 1%;
-        background-image: linear-gradient(-45deg, rgb(49, 49, 49), rgb(102, 102, 102), rgb(49, 49, 49));
-        width: 33%;
-        height: 10vh;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-    }
+	.gm-style .gm-style-iw {
+		font-size: 13px;
+		font-family: 'Helvetica', 'Arial', 'sans-serif';
+		opacity: 0.9;
+	}
 
-    body div div h1 {
-        font-weight: bold;
-        color: rgb(223, 0, 0);
-        font-size: larger;
-    }
-    
-    body div div h2 {
-         color: white;
-         font-size: small;
-     }
-}
+	.gm-style .gm-style-iw-t::after {
+		background: #FBD02D;
+	}
+
+
+	h3 {
+		font-size: 17px;
+		color: #333652;
+		font-family: 'Helvetica', 'Arial', 'sans-serif';
+	}
+
+	@media screen and (max-width: 768px)
+	{
+	    body {
+	        padding: 2%;
+	        display: flex;
+	        flex-direction: column;
+	        background-color: rgb(27, 27, 27);
+	    }
+
+	    .map {
+	        height: 85vh;
+	        width: 100%;
+	    }
+
+	    .totalInfo {
+	        font-family: Arial, Helvetica, sans-serif;
+	        width: 100%;
+	        height: 13vh;
+	        background-color: rgb(27, 27, 27);
+	        display: flex;
+	        flex-direction: row;
+	        justify-content: space-between;
+	    }
+
+	    #confirmedCases {
+	        padding: 1%;
+	        background-image: linear-gradient(-45deg, rgb(49, 49, 49), rgb(102, 102, 102), rgb(49, 49, 49));
+	        width: 30%;
+	        height: 10vh;
+	        display: flex;
+	        flex-wrap: wrap;
+	        align-items: center;
+	        justify-content: center;
+	    }
+	 
+	    #deathCases {
+	        padding: 1%;
+	        background-image: linear-gradient(-45deg, rgb(49, 49, 49), rgb(102, 102, 102), rgb(49, 49, 49));
+	        width: 30%;
+	        height: 10vh;
+	        display: flex;
+	        flex-wrap: wrap;
+	        align-items: center;
+	        justify-content: center;
+	    }
+
+	    #recoveredCases {
+	        padding: 1%;
+	        background-image: linear-gradient(-45deg, rgb(49, 49, 49), rgb(102, 102, 102), rgb(49, 49, 49));
+	        width: 33%;
+	        height: 10vh;
+	        display: flex;
+	        flex-wrap: wrap;
+	        align-items: center;
+	        justify-content: center;
+	    }
+
+	    body div div h1 {
+	        font-weight: bold;
+	        color: rgb(223, 0, 0);
+	        font-size: larger;
+	    }
+	    
+	    body div div h2 {
+	         color: white;
+	         font-size: small;
+	     }
+	}
