@@ -163,20 +163,33 @@ renderData();
 
 async function getData()
 {
-    const response = await fetch('https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/latest');
-    const data = await response.json();
-    return data;
+    try 
+    {
+        const response = await fetch('https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/latest');
+        const data = await response.json();
+        return data;
+    }
+    catch (error) 
+    {
+        return error;
+    }
 }
 
 async function getDataTwo()
 {
-    const response = await fetch('https://coronavirus-19-api.herokuapp.com/countries');
-    const data = await response.json();
-    return data;
+    try
+    {
+        const response = await fetch('https://coronavirus-19-api.herokuapp.com/countries');
+        const data = await response.json();
+        return data;
+    }
+    catch (error)
+    {
+        return error;
+    }
 }
 
 const info = new google.maps.InfoWindow();
-
 
 function renderInfoData(item, boolean)
 { 
@@ -184,13 +197,12 @@ function renderInfoData(item, boolean)
 
     if(boolean)
     {
-
-    var numCases = Number(item.cases).toLocaleString('es');
-    var numDeaths = Number(item.deaths).toLocaleString('es');
-    var numRecovered = Number(item.recovered).toLocaleString('es');
-    var numCritical = Number(item.critical).toLocaleString('es');
-    var numCasesPerMillion = Number(item.casesPerOneMillion).toLocaleString('es');
-
+        var numCases = Number(item.cases).toLocaleString('es');
+        var numDeaths = Number(item.deaths).toLocaleString('es');
+        var numRecovered = Number(item.recovered).toLocaleString('es');
+        var numCritical = Number(item.critical).toLocaleString('es');
+        var numCasesPerMillion = Number(item.casesPerOneMillion).toLocaleString('es');
+        var numDeathsPerOneMillion = Number(item.deathsPerOneMillion).toLocaleString('es');
     
         stringToRender = `
             <h3> ${item.country} </h3>
@@ -200,14 +212,14 @@ function renderInfoData(item, boolean)
             <p>Recuperados: ${numRecovered}</p>
             <p>Casos críticos: ${numCritical}</p>
             <p>Casos por millon: ${numCasesPerMillion}</p>
-            <p>Muertes por millon: ${item.deathsPerOneMillion}</p>
+            <p>Muertes por millon: ${numDeathsPerOneMillion}</p>
             `;
     }
     else
     {
-    var numConfirmed = Number(item.confirmed).toLocaleString('es');
-    var numDeaths2 = Number(item.deaths).toLocaleString('es');
-    var numRecovered2 = Number(item.recovered).toLocaleString('es');
+        var numConfirmed = Number(item.confirmed).toLocaleString('es');
+        var numDeaths2 = Number(item.deaths).toLocaleString('es');
+        var numRecovered2 = Number(item.recovered).toLocaleString('es');
 
         stringToRender = `
             <h3>${item.provincestate} ${item.countryregion}</h3>
@@ -251,88 +263,123 @@ function RenderInfoCondition(item, dataTwo)
     });
 }
 
-async function renderData ()
+async function renderData()
 {
-    const data = await getData();
-    const dataTwo = await getDataTwo();
-    console.log(data);
-    console.log(dataTwo);
-
+    try
+    {
+        const data = await getData();
+        const dataTwo = await getDataTwo();
+        console.log(data);
+        console.log(dataTwo);
+        
+        data.forEach(item => {
     
-    data.forEach(item => {
-
-        if(item.confirmed)
-        {
-            let tamaño;
-
-                if(item.confirmed > 68000)
-                {
-                    tamaño = 170;
-                } else if (item.confirmed<6000)
-                {
-                    tamaño = 15;
-                } else
-                {
-                    tamaño = item.confirmed/400;      
-                }
-
-            var icon = {
-                     url: "icono2.png", // url
-
-                      scaledSize: new google.maps.Size(tamaño, tamaño), // scaled size
-                    };
-
-
-            const marker = new google.maps.Marker(
-                {
-                    position: 
+            if(item.confirmed)
+            {
+                let tamaño;
+    
+                    if(item.confirmed > 68000)
                     {
-                        lat: item.location.lat,
-                        lng: item.location.lng,
-                    },
-                    map: map,
-                    icon: icon
-
-                }
-                );
-
-                
-            marker.addListener('click', () => {
-                RenderInfoCondition(item, dataTwo);
-                info.open(map, marker);
-            });
-        }
-    });
+                        tamaño = 170;
+                    } else if (item.confirmed<6000)
+                    {
+                        tamaño = 15;
+                    } else
+                    {
+                        tamaño = item.confirmed/400;      
+                    }
+    
+                var icon = {
+                         url: "icono2.png", // url
+    
+                          scaledSize: new google.maps.Size(tamaño, tamaño), // scaled size
+                        };
+    
+                const marker = new google.maps.Marker(
+                    {
+                        position: 
+                        {
+                            lat: item.location.lat,
+                            lng: item.location.lng,
+                        },
+                        map: map,
+                        icon: icon
+                    }
+                    );
+                    
+                marker.addListener('click', () => {
+                    RenderInfoCondition(item, dataTwo);
+                    info.open(map, marker);
+                });
+            }
+        });
+    }
+    catch (error)
+    {
+        alert('Ocurrió un error al cargar los datos, se recomienda recarga la página');
+        console.log(error);
+    }
 }
 
 async function getTotalData()
 {
-    const response = await fetch('https://coronavirus-19-api.herokuapp.com/all');
-    const data = await response.json();
-    return data;
+    try
+    {
+        const response = await fetch('https://coronavirus-19-api.herokuapp.com/all');
+        const data = await response.json();
+        return data;
+    }
+    catch (error)
+    {
+        return error;
+    }
 }
 
 (async function totalConfirmedCases()
 {
-    const $pCases = document.getElementById('confirmedCasesP');
-    const totalInfo = await getTotalData();
-    console.log(totalInfo);
-
-    $pCases.innerHTML = `${totalInfo.cases}`;
+    try
+    {
+        const $pCases = document.getElementById('confirmedCasesP');
+        const totalInfo = await getTotalData();
+        console.log(totalInfo);
+    
+        $pCases.innerHTML = `${totalInfo.cases}`;
+    }
+    catch (error)
+    {
+        alert('Ocurrió un error al cargar los datos, se recomienda recarga la página');
+        console.log(error);
+    }
 })();
 
 (async function totalDeathsCases()
 {
-    const $pCases = document.getElementById('deathCasesP');
-    const totalInfo = await getTotalData();
-
-    $pCases.innerHTML = `${totalInfo.deaths}`;
+    try
+    {
+        const $pCases = document.getElementById('deathCasesP');
+        const totalInfo = await getTotalData();
+    
+        $pCases.innerHTML = `${totalInfo.deaths}`;
+    }
+    catch (error)
+    {
+        alert('Ocurrió un error al cargar los datos, se recomienda recarga la página');
+        console.log(error);
+    }
 })();
 
 (async function totalRecoveredCases()
 {
-    const $pCases = document.getElementById('recoveredCasesP');
-    const totalInfo = await getTotalData();
-
-    $pCases.innerHTML = `${totalInfo.recovered}`;
+    try
+    {
+        const $pCases = document.getElementById('recoveredCasesP');
+        const totalInfo = await getTotalData();
+    
+        $pCases.innerHTML = `${totalInfo.recovered}`;
+    }
+    catch (error)
+    {
+        alert('Ocurrió un error al cargar los datos, se recomienda recarga la página');
+        console.log(error);
+    }
 })();

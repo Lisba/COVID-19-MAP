@@ -12,13 +12,13 @@
 	}
 
 	.map {
-	    height: 100vh;
+	    height: 98vh;
 	    width: 80%;
 	}
 
 	.totalInfo {
 	    width: 17%;
-	    height: 100vh;
+	    height: 98vh;
 	    background-color: #F2F1EF;
 	    display: flex;
 	    flex-wrap: wrap;
