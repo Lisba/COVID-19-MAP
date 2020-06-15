@@ -154,7 +154,7 @@ async function renderData()
                     }
     
                 var icon = {
-                         url: "icono2.png", // url
+                         url: "/src/assets/static/icono.png", // url
     
                           scaledSize: new google.maps.Size(tamaño, tamaño), // scaled size
                         };
